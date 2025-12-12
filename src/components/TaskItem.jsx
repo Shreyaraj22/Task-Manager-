@@ -1,126 +1,35 @@
 import React from "react";
 
-
 const TaskItem = ({ task, toggleComplete, deleteTask }) => {
+  return (
+    <div className="flex justify-between items-center p-3 mb-2 bg-gray-100 rounded-lg">
+      <span
+        className={`text-base ${
+          task.completed ? "line-through text-gray-400" : "text-black"
+        }`}
+      >
+        {task.text}
+      </span>
 
-  return (
+      <div className="flex gap-2">
+        <button
+          onClick={() => toggleComplete(task.id)}
+          className="bg-green-400 text-white px-3 py-1 rounded-md cursor-pointer hover:bg-green-500 transition"
+          aria-label="Complete Task"
+        >
+          ✓
+        </button>
 
-    <div style={styles.item}>
-
-      <span
-
-        style={{
-
-          ...styles.text,
-
-          textDecoration: task.completed ? "line-through" : "none",
-
-          color: task.completed ? "gray" : "#000",
-
-        }}
-
-      >
-
-        {task.text}
-
-      </span>
-
-
-
-      <div style={styles.actions}>
-
-        <button onClick={() => toggleComplete(task.id)} style={styles.completeBtn}>
-
-          ✓
-
-        </button>
-
-
-
-        <button onClick={() => deleteTask(task.id)} style={styles.deleteBtn}>
-
-          ✕
-
-        </button>
-
-      </div>
-
-    </div>
-
-  );
-
+        <button
+          onClick={() => deleteTask(task.id)}
+          className="bg-red-600 text-white px-2.5 py-1 rounded-md cursor-pointer hover:bg-red-700 transition"
+          aria-label="Delete Task"
+        >
+          ✕
+        </button>
+      </div>
+    </div>
+  );
 };
-
-
-
-const styles = {
-
-  item: {
-
-    display: "flex",
-
-    justifyContent: "space-between",
-
-    alignItems: "center",
-
-    padding: "12px",
-
-    marginBottom: "10px",
-
-    background: "#f7f7f7",
-
-    borderRadius: "8px",
-
-  },
-
-  text: {
-
-    fontSize: "16px",
-
-  },
-
-  actions: {
-
-    display: "flex",
-
-    gap: "10px",
-
-  },
-
-  completeBtn: {
-
-    background: "#71cc1cff",
-
-    color: "#fff",
-
-    padding: "6px 10px",
-
-    border: "none",
-
-    borderRadius: "6px",
-
-    cursor: "pointer",
-
-  },
-
-  deleteBtn: {
-
-    background: "red",
-
-    color: "#fff",
-
-    padding: "6px 10px",
-
-    border: "none",
-
-    borderRadius: "6px",
-
-    cursor: "pointer",
-
-  },
-
-};
-
-
 
 export default TaskItem;
